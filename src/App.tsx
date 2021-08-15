@@ -21,9 +21,15 @@ const App: React.FC = (props) => {
   }, [count]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((data) => setRobotGallery(data));
+    const fetchData = async () => {
+      // await 后面接的是一个promise
+      const responses = await fetch(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      const data = await responses.json();
+      setRobotGallery(data);
+    };
+    fetchData();
   }, []);
 
   return (
