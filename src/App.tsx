@@ -26,7 +26,7 @@ const App: React.FC = (props) => {
     setLoading(true);
     const fetchData = async () => {
       // await 后面接的是一个promise
-      // 没有 try catch 的话 setLoading(false) 直接 接在 setRobotGallery(data)后面
+      // 没有 try catch 的话 setLoading(false) 直接接在 setRobotGallery(data)后面
       try {
         const responses = await fetch(
           "https://jsonplaceholder.typicode.com/users"
@@ -52,7 +52,7 @@ const App: React.FC = (props) => {
           setCount(count + 1);
         }}
       >
-        Click
+        Click Count + 1
       </button>
       <span>Count:{count}</span>
       <ShoppingCart />

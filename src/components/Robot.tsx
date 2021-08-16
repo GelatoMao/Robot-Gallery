@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { appContext } from "../index";
+import { appContext } from "../AppState";
 import styles from "./Robot.module.css";
 
 interface RobotProps {
@@ -9,6 +9,7 @@ interface RobotProps {
 }
 
 // 对象可以直接使用花括号进行展开
+// RobotProps 定义的是从父组件传过来的数据
 const Robot: React.FC<RobotProps> = ({ id, name, email }) => {
   const value = useContext(appContext);
   return (
