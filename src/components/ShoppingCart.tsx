@@ -1,4 +1,5 @@
 import React from "react";
+import { appContext } from "../AppState";
 import styles from "./ShoppingCart.module.css";
 
 interface Props {}
@@ -24,20 +25,27 @@ class ShoppingCart extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className={styles.cartContainer}>
-        <button className={styles.button} onClick={this.handleClick}>
-          <span>购物车 2 (件)</span>
-        </button>
-        <div
-          className={styles.cartDropDown}
-          style={{ display: this.state.isOpen ? "block" : "none" }}
-        >
-          <ul>
-            <li>robot 1</li>
-            <li>robot 2</li>
-          </ul>
-        </div>
-      </div>
+      <appContext.Consumer>
+        {(value) => {
+          return (
+            <div className={styles.cartContainer}>
+              <button className={styles.button} onClick={this.handleClick}>
+                <span>购物车 {value.shoppingCart.items.length}</span>
+              </button>
+              <div
+                className={styles.cartDropDown}
+                style={{ display: this.state.isOpen ? "block" : "none" }}
+              >
+                <ul>
+                  {value.shoppingCart.items.map((i) => (
+                    <li>{i.name}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          );
+        }}
+      </appContext.Consumer>
     );
   }
 }
