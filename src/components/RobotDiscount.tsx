@@ -1,24 +1,19 @@
 import React, { useContext } from "react";
 import { appContext, appSetStateContext } from "../AppState";
-import { withAddToCart } from "./AddToCart";
+import { useAddToCart } from "./AddToCart";
 import styles from "./Robot.module.css";
 
 interface RobotProps {
   id: number;
   name: string;
   email: string;
-  addToCart: (id, name) => void;
 }
 
 // 对象可以直接使用花括号进行展开
 // RobotProps 定义的是从父组件传过来的数据
-const RobotDiscount: React.FC<RobotProps> = ({
-  id,
-  name,
-  email,
-  addToCart,
-}) => {
+const RobotDiscount: React.FC<RobotProps> = ({ id, name, email }) => {
   const value = useContext(appContext);
+  const addToCart = useAddToCart();
 
   return (
     <div className={styles.cardContainer}>
@@ -32,4 +27,4 @@ const RobotDiscount: React.FC<RobotProps> = ({
   );
 };
 
-export default withAddToCart(RobotDiscount);
+export default RobotDiscount;
